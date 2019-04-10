@@ -8,6 +8,8 @@ const { save, getLatestVersion, findOne } = require('../lib/store');
 
 const router = Router();
 
+const host = process.env.CITIZEN_HOSTNAME || 'http://localhost';
+
 // register a module with version
 router.post('/:namespace/:name/:provider/:version', (req, res, next) => {
   const {
@@ -109,7 +111,7 @@ router.get('/:namespace/:name/:provider/:version', async (req, res, next) => {
     return next();
   }
 
-  res.set('X-Terraform-Get', `/v1/modules/tarball/${module.location}`);
+  res.set('X-Terraform-Get', `${host}/v1/modules/tarball/${module.location}`);
 
   return res.render('modules/module', module);
 });
@@ -124,7 +126,7 @@ router.get('/:namespace/:name/:provider', async (req, res, next) => {
     return next();
   }
 
-  res.set('X-Terraform-Get', `https://61ed7900.ngrok.io/v1/modules/tarball/${module.location}`);
+  res.set('X-Terraform-Get', `${host}/v1/modules/tarball/${module.location}`);
 
   return res.render('modules/latest-version', module);
 });

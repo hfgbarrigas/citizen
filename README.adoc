@@ -35,6 +35,7 @@ Environment variables:
 * `CITIZEN_STORAGE` : Storage type to store module files. You can use `file` or `s3` type.
 * `CITIZEN_STORAGE_PATH`: A directory to save module files only if `CITIZEN_STORAGE` is `file` (absolute/relative path can be used).
 * `CITIZEN_AWS_S3_BUCKET``: A S3 bucket to save module files only if `CITIZEN_STORAGE` is `s3`.
+* `CITIZEN_HOSTNAME``: Hostname where citizen can be found. By default http://localhost is used, bear in mind that terraform client needs https and this is used as a value for X-Terraform-Get.
 * `AWS_ACCESS_KEY_ID`: Your AWS access key only if `CITIZEN_STORAGE` is `s3`.
 * `AWS_SECRET_ACCESS_KEY`: Your AWS secret access key only if `CITIZEN_STORAGE` is `s3`.
 

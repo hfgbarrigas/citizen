@@ -5,6 +5,8 @@ const { getModule } = require('../lib/storage');
 
 const router = Router();
 
+const host = process.env.CITIZEN_HOSTNAME || 'http://localhost';
+
 // https://www.terraform.io/docs/registry/api.html#download-source-code-for-a-specific-module-version
 router.get('/:namespace/:name/:provider/:version/download', async (req, res, next) => {
   const options = { ...req.params };
@@ -15,7 +17,7 @@ router.get('/:namespace/:name/:provider/:version/download', async (req, res, nex
     return next();
   }
 
-  res.set('X-Terraform-Get', `/v1/modules/tarball/${module.location}`);
+  res.set('X-Terraform-Get', `${host}/v1/modules/tarball/${module.location}`);
   return res.status(204).send();
 });
 
