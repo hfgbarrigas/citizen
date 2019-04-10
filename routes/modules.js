@@ -109,6 +109,8 @@ router.get('/:namespace/:name/:provider/:version', async (req, res, next) => {
     return next();
   }
 
+  res.set('X-Terraform-Get', `/v1/modules/tarball/${module.location}`);
+
   return res.render('modules/module', module);
 });
 
@@ -121,6 +123,8 @@ router.get('/:namespace/:name/:provider', async (req, res, next) => {
   if (!module) {
     return next();
   }
+
+  res.set('X-Terraform-Get', `https://61ed7900.ngrok.io/v1/modules/tarball/${module.location}`);
 
   return res.render('modules/latest-version', module);
 });
